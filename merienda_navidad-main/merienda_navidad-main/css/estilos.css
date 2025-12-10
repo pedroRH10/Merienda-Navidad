@@ -1,0 +1,240 @@
+/* --- Estilos Existentes (Se mantiene o modifica ligeramente) --- */
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+.imagen_difuminada {
+    filter: blur(10px);
+}
+
+/* Estilo del contenedor div */
+div {
+    text-align: center;
+}
+
+/* --- Mejoras de Estilo Navideño y Preguntas --- */
+
+/* Fondo de la Página Navideño */
+body {
+    /* Clásico rojo de navidad con un degradado sutil */
+    background: linear-gradient(180deg, #b30000 0%, #800000 100%); 
+    color: #f0f0f0; /* Texto claro para el fondo oscuro */
+    font-family: 'Arial', sans-serif;
+    position: relative; /* Necesario para posicionar la nieve */
+    overflow-x: hidden; /* Evita scroll horizontal por la nieve */
+}
+
+/* Decoración: Nieve Navideña de Fondo */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1; /* Asegura que la nieve esté detrás del contenido */
+    /* Copos de nieve generados con múltiples sombras */
+    background: 
+        radial-gradient(2px 2px at 20px 20px, #ffffff, transparent),
+        radial-gradient(3px 3px at 40px 100px, #ffffff, transparent),
+        radial-gradient(1px 1px at 60px 50px, #ffffff, transparent),
+        radial-gradient(2px 2px at 80px 10px, #ffffff, transparent),
+        radial-gradient(3px 3px at 100px 70px, #ffffff, transparent),
+        radial-gradient(1px 1px at 120px 30px, #ffffff, transparent),
+        radial-gradient(2px 2px at 140px 90px, #ffffff, transparent),
+        radial-gradient(3px 3px at 160px 10px, #ffffff, transparent),
+        radial-gradient(1px 1px at 180px 60px, #ffffff, transparent),
+        radial-gradient(2px 2px at 200px 20px, #ffffff, transparent);
+    background-size: 200px 200px;
+    animation: nevar 10s linear infinite;
+}
+
+@keyframes nevar {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        /* Desplazamiento que simula la caída */
+        background-position: 200px 400px; 
+    }
+}
+
+/* Contenedores de Pregunta (div_p1, div_p2, etc.) */
+#div_p1, #div_p2, #div_p3, #div_p4 {
+    background-color: rgba(10, 50, 10, 0.9); /* Verde oscuro semi-transparente */
+    border: 4px solid #FFD700; /* Borde dorado */
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    /* Sombra con efecto festivo (más blanco/dorado) */
+    box-shadow: 0 0 10px #FFD700, 0 0 20px rgba(255, 255, 255, 0.4); 
+}
+
+/* Títulos de Entrante/Bebida */
+#div_p1 p:first-child, #div_p2 p:first-child, #div_p3 p:first-child, #div_p4 p:first-child {
+    font-size: 2em;
+    font-weight: 900;
+    color: #FFD700; /* Dorado */
+    text-shadow: 2px 2px 4px #000000;
+    margin-bottom: 10px;
+}
+
+/* Descripción de la Pregunta */
+#div_p1 p:nth-child(2), #div_p2 p:nth-child(2), #div_p3 p:nth-child(2), #div_p4 p:nth-child(2) {
+    font-style: italic;
+    color: #c7f2c7; /* Verde claro */
+    margin-bottom: 20px;
+}
+
+/* Estilos para las Opciones de Respuesta */
+.opcion-pregunta { /* Usando la clase que agregamos al HTML */
+    display: block; 
+    background-color: rgba(255, 255, 255, 0.1); 
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: left; 
+}
+
+.opcion-pregunta:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px); 
+}
+
+/* Ocultar el radio button por defecto y estilizarlo con el label */
+input[type="radio"] {
+    display: none;
+}
+
+/* Estilo cuando el radio button está seleccionado */
+input[type="radio"]:checked + .opcion-pregunta {
+    background-color: #c30000; /* Rojo oscuro de navidad */
+    border: 2px solid #FFD700;
+    color: white;
+    box-shadow: 0 0 10px #FFD700;
+}
+
+/* --- Estilos del Botón --- */
+.boton {
+    /* ... (Mantiene el estilo de botón navideño con nieve) ... */
+    position: relative;
+    overflow: hidden; 
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #c30000, #8b0000);
+    color: #D4AF37; 
+    border-radius: 12px;
+    border: 2px solid #D4AF37;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); 
+    transition: background 0.3s;
+}
+
+.boton:hover {
+    background: linear-gradient(135deg, #8b0000, #c30000); 
+}
+
+.boton::before,
+.boton::after {
+    content: "❄";
+    position: absolute;
+    color: rgb(249, 249, 249);
+    top: -20px;
+    font-size: 14px;
+    opacity: 0.9;
+    animation: caer 2.5s linear infinite;
+}
+
+
+.boton::before {
+    left: 25%;
+    animation-duration: 2.2s;
+}
+
+
+.boton::after {
+    left: 60%;
+    animation-duration: 3s;
+}
+
+
+@keyframes caer {
+    0% { transform: translateY(-10px); opacity: 1; }
+    100% { transform: translateY(50px); opacity: 0; }
+}
+
+/* --- Estilos del Modal (Se mantienen) --- */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+
+
+.modal-contenido {
+    margin: 15% auto; 
+    padding: 20px;
+    border: 5px solid #F7DC6F; 
+    width: 80%; 
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    background-color: #380000; 
+    color: white;
+}
+
+
+.cerrar {
+    color: #FFFFFF;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.cerrar:hover,
+.cerrar:focus {
+    color: #FFD700; 
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+#modalMensaje {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 20px 0;
+    color: #F7DC6F;
+}
+
+.boton-modal {
+    padding: 10px 20px;
+    background-color: #F7DC6F; 
+    color: #C0392B; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.boton-modal:hover {
+    background-color: #FFD700; 
+}
